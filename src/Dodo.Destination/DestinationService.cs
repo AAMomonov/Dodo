@@ -20,7 +20,7 @@ namespace Dodo.Destination
             var destination = new Dictionary<string, string>(blocks.Count);
 
             var reverseBlocks = blocks.ToDictionary(k => k.Value, v => v.Key); // O(n)
-            var firstPoint = blocks.FirstOrDefault(p => !reverseBlocks.ContainsKey(p.Key)); //O(n)
+            var firstPoint = blocks.FirstOrDefault(p => !reverseBlocks.ContainsKey(p.Key)); // O(n)
 
             destination.Add(firstPoint.Key, firstPoint.Value);
 
@@ -30,9 +30,10 @@ namespace Dodo.Destination
             {
                 destination.Add(lastValue, blocks[lastValue]);
                 lastValue = blocks[lastValue];
-            } // O(n) - 1
+            } // O(n)
 
-            // Сложность алгоритма O(3(n+h)),  h-сложность вычисления хэш функции. 
+            // Сложность алгоритма O(3n).
+            // Не учитывается сложность вычисления хэш - функции.
 
             return destination;
         }
